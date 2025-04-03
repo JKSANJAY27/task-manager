@@ -6,6 +6,9 @@ import TaskStats from './components/TaskStats';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+// Name: Sanjay J K
+//Reg. No.: 23BCE2028
+
 class App extends Component {
   constructor(props) {
     super(props);
