@@ -1,38 +1,172 @@
-.App {
-  text-align: center;
+/* General Styles */
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f0f4f8; /* Softer light background */
+    color: #334155;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Dark Mode */
+body.dark {
+    background-color: #111827; /* Richer dark background */
+    color: #e2e8f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* App Container */
+.app-container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06), 0 5px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease-in-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body.dark .app-container {
+    background: #1e293b; /* Dark blue-gray container in dark mode */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.App-link {
-  color: #61dafb;
+/* Main Content */
+.main-content {
+    padding: 25px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Filter Controls */
+.filter-controls {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+    margin-bottom: 28px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #f1f5f9;
+}
+
+body.dark .filter-controls {
+    background-color: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+.filter-controls button {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-controls button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.filter-controls button:active::after {
+    opacity: 0.5;
+}
+
+.filter-controls button.active,
+.filter-controls button:hover {
+    background-color: #3b82f6;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+body.dark .filter-controls button {
+    background-color: #334155;
+    color: #e2e8f0;
+}
+
+body.dark .filter-controls button.active,
+body.dark .filter-controls button:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.filter-controls .clear-completed {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.filter-controls .clear-completed:hover {
+    background-color: #fecaca;
+    color: #991b1b;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+}
+
+body.dark .filter-controls .clear-completed {
+    background-color: #3f2a2d;
+    color: #fca5a5;
+}
+
+body.dark .filter-controls .clear-completed:hover {
+    background-color: #4c2a2e;
+    color: #fecaca;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.app-container {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        max-width: 95%;
+        margin: 20px auto;
+        padding: 22px;
+        border-radius: 12px;
+    }
+    
+    .filter-controls {
+        padding: 16px;
+        gap: 10px;
+    }
+    
+    .filter-controls button {
+        flex: 1 0 calc(50% - 10px);
+        padding: 12px 10px;
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 18px;
+    }
+    
+    .filter-controls button {
+        flex: 1 0 100%;
+    }
 }
